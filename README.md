@@ -3,7 +3,7 @@
 # Unidad 2: Aeguramiento en la Calidad de Software.
 ## Evaluación 2.
 
-## Módulo Recursos Humanos
+## Módulo Recursos Humanos.
 
 ### Integrantes: 
  - Jorge Cáceres Fernández.
