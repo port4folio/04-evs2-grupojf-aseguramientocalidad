@@ -1,0 +1,44 @@
+body{
+    background: linear-gradient(to right, #1f2937, #111827);
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+}
+
+section{
+    background-color: #f9fafb !important;
+    border-radius: 15px;
+}
+
+h1{
+    font-weight: bold;
+    color: #0f172a;
+}
+
+h2{
+    color: #111827
+}
+
+p{
+    color: #374151;
+}
+
+.btn-primary{
+    background-color: #10b981;
+    border: none;
+    border-radius: 10px;
+    padding: 10px 25px;
+}
+
+.btn-primary:hover{
+    background-color: #059669;
+}
+
+.list-group-item{
+    transition: 0.3s;
+    color: #111827;
+}
+
+.list-group-item:hover{
+    background-color: #10b981;
+    color: white;
+}
