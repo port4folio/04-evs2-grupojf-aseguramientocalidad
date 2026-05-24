@@ -1,6 +1,8 @@
-const boton = document.querySelector('.btn');
+const boton = document.querySelectorAll('.btn');
 
-boton.addEventListener('click', function() {
-    alert('¡Bienvenido al Sistema de Recursos Humanos!');
+boton.forEach(function(boton) {
+    boton.addEventListener('click', function() {
+        alert('¡Bienvenido al Sistema de Recursos Humanos!');
+    });
 });
 

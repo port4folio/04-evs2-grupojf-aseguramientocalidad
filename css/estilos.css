@@ -15,7 +15,7 @@ h1{
 }
 
 h2{
-    color: #111827
+    color: #111827;
 }
 
 p{
@@ -33,12 +33,28 @@ p{
     background-color: #059669;
 }
 
-.list-group-item{
-    transition: 0.3s;
-    color: #111827;
+/* Lista del principal.html */
+.lista-modulos{
+    width: 55%;
+    margin: auto;
 }
 
-.list-group-item:hover{
+.lista-modulos .list-group-item{
+    transition: 0.3s;
+    color: #111827;
+    padding: 4px 10px !important;
+    font-size: 0.9rem;
+    line-height: 1.2;
+    text-align: center;
+}
+
+.lista-modulos .list-group-item:hover{
     background-color: #10b981;
     color: white;
+}
+
+.lista-modulos .list-group-item i{
+    margin-right: 6px;
+    font-size: 0.9rem;
+    padding: 0;
 }
