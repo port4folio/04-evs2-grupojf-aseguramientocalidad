@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Control de Asistencia - Seguridad LTDA</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
+        <div class="container">
+            <a class="navbar-brand" href="principal.html">
+                <i class="bi bi-shield-lock-fill text-success"></i> Seguridad LTDA
+            </a>
+            <a href="portalEmpleado.html" class="btn btn-outline-light btn-sm">
+                <i class="bi bi-arrow-left-circle-fill"></i> Volver al Portal
+            </a>
+        </div>
+    </nav>
+    <main class="container mt-5 mb-5">
+        <section class="shadow p-5 bg-white rounded">
+            <div class="text-center mb-5">
+                <h1 class="display-5">Control de Asistencia</h1>
+                <p class="lead text-muted">
+                    Revisión de entradas, salidas, atrasos y horas trabajadas.
+                </p>
+            </div>
+            <div class="row g-4 mb-5">
+                <div class="col-md-4">
+                    <label class="form-label fw-bold">Nombre del Trabajador</label>
+                    <input type="text" class="form-control" placeholder="Ingrese nombre">
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label fw-bold">Fecha Inicio</label>
+                    <input type="date" class="form-control">
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label fw-bold">Fecha Término</label>
+                    <input type="date" class="form-control">
+                </div>
+            </div>
+            <div class="table-responsive shadow-sm rounded">
+                <table class="table table-bordered table-hover align-middle text-center">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>Fecha</th>
+                            <th>Hora Entrada</th>
+                            <th>Hora Salida</th>
+                            <th>Horas Trabajadas</th>
+                            <th>Atrasos</th>
+                            <th>Ausencias</th>
+                            <th>Estado</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>01/06/2026</td>
+                            <td>08:00</td>
+                            <td>18:00</td>
+                            <td>9 Horas</td>
+                            <td>No</td>
+                            <td>No</td>
+                            <td>
+                                <span class="badge bg-success">Correcto</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>02/06/2026</td>
+                            <td>08:20</td>
+                            <td>18:00</td>
+                            <td>8 Horas</td>
+                            <td>Sí</td>
+                            <td>No</td>
+                            <td>
+                                <span class="badge bg-warning text-dark">Atraso</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>03/06/2026</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>0 Horas</td>
+                            <td>No</td>
+                            <td>Sí</td>
+                            <td>
+                                <span class="badge bg-danger">Ausente</span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="text-center mt-5">
+                <button type="button" class="btn btn-success px-4 me-2">
+                    <i class="bi bi-printer-fill"></i> Imprimir Registro
+                </button>
+                <a href="portalEmpleado.html" class="btn btn-secondary px-4">
+                    <i class="bi bi-arrow-left-circle-fill"></i> Volver
+                </a>
+            </div>
+        </section>
+    </main>
+</body>
+</html>
