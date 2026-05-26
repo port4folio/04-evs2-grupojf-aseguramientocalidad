@@ -32,11 +32,11 @@
                 <div class="row g-4">
                     <div class="col-md-6">
                         <label class="form-label fw-bold">Nombre del Trabajador</label>
-                        <input type="text" class="form-control" placeholder="Ingrese nombre completo ej: Hernán Pérez Hernández">
+                        <input type="text" class="form-control" id="nombreTrabajador" placeholder="Ingrese nombre completo ej: Hernán Pérez Hernández">
                     </div>
                     <div class="col-md-6">
                         <label class="form-label fw-bold">RUT</label>
-                        <input type="text" class="form-control" placeholder="Ej: 12.345.678-9">
+                        <input type="text" class="form-control" id="rutTrabajador" placeholder="Ej: 12.345.678-9">
                     </div>
                     <div class="col-md-6">
                         <label class="form-label fw-bold">Fecha de Inicio de Vacaciones</label>
@@ -78,7 +78,7 @@
                     </div>
                     <div class="col-12">
                         <label class="form-label fw-bold">Motivo de Vacaciones</label>
-                        <textarea class="form-control" rows="4" placeholder="Ingrese motivo de la solicitud"></textarea>
+                        <textarea class="form-control" id="motivoVacaciones" rows="4" placeholder="Ingrese motivo de la solicitud"></textarea>
                     </div>
                 </div>
                 <div class="text-center mt-4">
@@ -93,6 +93,8 @@
                             <thead class="table-dark">
                                 <tr>
                                     <th>Año</th>
+                                    <th>Nombre</th>
+                                    <th>RUT</th>
                                     <th>Fecha Inicio</th>
                                     <th>Fecha Término</th>
                                     <th>Días Utilizados</th>
@@ -101,7 +103,7 @@
                             </thead>
                             <tbody id="tablaVacaciones">
                                 <tr>
-                                    <td colspan="5" class="text-center text-muted">
+                                    <td colspan="7" class="text-center text-muted">
                                         No existen solicitudes registradas.
                                     </td>
                                 </tr>

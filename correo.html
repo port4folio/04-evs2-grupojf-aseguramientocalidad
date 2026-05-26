@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Correo RR.HH - Seguridad LTDA</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="css/estilos.css">
+    <script src="js/script.js" defer></script>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
+        <div class="container">
+            <a class="navbar-brand" href="principal.html">
+                <i class="bi bi-shield-lock-fill text-success"></i> Seguridad LTDA
+            </a>
+            <a href="vacaciones.html" class="btn btn-outline-light btn-sm">
+                <i class="bi bi-arrow-left-circle-fill"></i> Volver a Vacaciones
+            </a>
+        </div>
+    </nav>
+    <main class="container mt-5 mb-5">
+        <section class="shadow p-5 bg-white rounded">
+
+            <div class="text-center mb-5">
+                <h1 class="display-5">Solicitud Recibida por Recursos Humanos</h1>
+                <p class="lead text-muted">
+                    Simulación del correo enviado para autorizar vacaciones.
+                </p>
+            </div>
+            <div class="card shadow-sm">
+                <div class="card-header bg-dark text-white">
+                    <i class="bi bi-envelope-fill"></i> Notificación de Solicitud
+                </div>
+                <div class="card-body">
+                    <p>
+                        Estimado equipo de Recursos Humanos, se ha recibido una nueva solicitud de vacaciones para revisión.
+                    </p>
+                    <ul class="list-group mb-4">
+                        <li class="list-group-item">
+                            <strong>Trabajador:</strong>
+                            <span id="correoNombre"></span>
+                        </li>
+                        <li class="list-group-item">
+                            <strong>RUT:</strong>
+                            <span id="correoRut"></span>
+                        </li>
+                        <li class="list-group-item">
+                            <strong>Fecha de inicio:</strong>
+                            <span id="correoInicio"></span>
+                        </li>
+                        <li class="list-group-item">
+                            <strong>Fecha de término:</strong>
+                            <span id="correoTermino"></span>
+                        </li>
+                        <li class="list-group-item">
+                            <strong>Días solicitados:</strong>
+                            <span id="correoDias"></span>
+                        </li>
+                        <li class="list-group-item">
+                            <strong>Motivo:</strong>
+                            <span id="correoMotivo"></span>
+                        </li>
+                        <li class="list-group-item">
+                            <strong>Estado:</strong>
+                            <span id="estadoCorreo" class="badge bg-warning text-dark">
+                                Pendiente
+                            </span>
+                        </li>
+                    </ul>
+                    <div class="text-center">
+                        <button class="btn btn-success px-4 me-2" onclick="aprobarSolicitud()">
+                            <i class="bi bi-check-circle-fill"></i> Aprobar
+                        </button>
+                        <button class="btn btn-danger px-4" onclick="rechazarSolicitud()">
+                            <i class="bi bi-x-circle-fill"></i> Rechazar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+</body>
+</html>
