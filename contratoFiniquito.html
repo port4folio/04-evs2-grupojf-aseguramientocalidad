@@ -57,11 +57,24 @@
                     </div>
                     <div class="col-md-6">
                         <label class="form-label fw-bold">Fecha de Emisión</label>
-                        <input type="date" class="form-control">
+                        <input 
+                            type="text" 
+                            class="form-control" 
+                            placeholder="Ej: 13 - Abril - 2026"
+                            onfocus="(this.type='date')"
+                            onblur="if(!this.value)this.type='text'"
+                        >
                     </div>
                     <div class="col-md-6">
                         <label class="form-label fw-bold">Sueldo Base</label>
-                        <input type="number" class="form-control" placeholder="Ingrese sueldo">
+                        <div class="input-group">
+                            <span class="input-group-text">$</span>
+                            <input 
+                                type="text" 
+                                class="form-control" 
+                                placeholder="Ingrese sueldo"
+                            >
+                        </div>
                     </div>
                     <div class="col-md-6">
                         <label class="form-label fw-bold">Tipo de Contrato</label>
@@ -70,6 +83,7 @@
                             <option>Indefinido</option>
                             <option>Plazo Fijo</option>
                             <option>Part Time</option>
+                            <option>Full Time</option>
                         </select>
                     </div>
                     <div class="col-12">

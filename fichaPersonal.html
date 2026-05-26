@@ -78,11 +78,17 @@
                     </div>
                     <div class="col-md-6">
                         <label class="form-label fw-bold">Fecha de Ingreso</label>
-                        <input type="date" class="form-control">
+                        <input 
+                                type="text" 
+                                class="form-control" 
+                                placeholder="Ej: 13 - Abril - 2026"
+                                onfocus="(this.type='date')"
+                                onblur="if(!this.value)this.type='text'"
+                            >
                     </div>
                     <div class="col-md-6">
-                        <label class="form-label fw-bold">Cantidad de Cargas Familiares</label>
-                        <input type="number" class="form-control" min="0">
+                        <label class="form-label fw-bold">Números de Cargas Familiares</label>
+                        <input type="text" class="form-control" placeholder="Ingrese Número de Cargas Familiares">
                     </div>
                     <div class="col-12">
                         <label class="form-label fw-bold">Fotografía del Empleado</label>
