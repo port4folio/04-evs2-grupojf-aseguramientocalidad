@@ -4,176 +4,104 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>Liquidaciones - Seguridad LTDA</title>
-
-    <link rel="stylesheet"
-        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
-
-    <link rel="stylesheet"
-        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
-
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="css/estilos.css">
-
-    <script src="js/script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="js/script.js" defer></script>
 </head>
 
 <body>
 
-    <!-- NAVBAR -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
-
         <div class="container">
-
             <a class="navbar-brand" href="principal.html">
                 <i class="bi bi-shield-lock-fill text-success"></i>
                 Seguridad LTDA
             </a>
-
-            <a href="portalEmpleado.html"
-                class="btn btn-outline-light btn-sm">
-
+            <a href="portalEmpleado.html" class="btn btn-outline-light btn-sm">
                 <i class="bi bi-arrow-left-circle-fill"></i>
                 Volver al Portal
             </a>
-
         </div>
-
     </nav>
 
-    <!-- CONTENIDO -->
     <main class="container mt-5 mb-5">
 
         <section class="shadow p-5 bg-white rounded">
 
-            <!-- TITULO -->
             <div class="text-center mb-5">
-
-                <h1 class="display-5">
-                    Liquidaciones de Renta
-                </h1>
-
-                <p class="lead text-muted">
-                    Consulta y descarga tus liquidaciones de sueldo.
-                </p>
-
+                <h1 class="display-5">Liquidaciones de Renta</h1>
+                <p class="lead text-muted">Consulta y descarga tus liquidaciones de sueldo.</p>
             </div>
 
-            <!-- TABLA -->
+            <!-- ALERTA si no hay datos -->
+            <div id="alertaSinDatos" class="alert alert-warning d-none" role="alert">
+                <i class="bi bi-exclamation-triangle-fill me-2"></i>
+                No se encontraron datos de ficha personal ni cálculo paramétrico en el sistema.
+                Por favor complete primero la <a href="fichaPersonal.html" class="alert-link">Ficha Personal</a>
+                y el <a href="calculoParametrico.html" class="alert-link">Modelo de Cálculo Paramétrico</a>.
+            </div>
+
             <div class="table-responsive">
-
                 <table class="table table-bordered table-hover text-center align-middle">
-
                     <thead class="table-dark">
-
                         <tr>
                             <th>Mes</th>
                             <th>Año</th>
+                            <th>Trabajador</th>
+                            <th>Sueldo Líquido</th>
                             <th>Estado</th>
                             <th>Acción</th>
                         </tr>
-
                     </thead>
-
                     <tbody>
-
-                        <!-- FILA 1 -->
                         <tr>
-
                             <td>Enero</td>
-
                             <td>2026</td>
-
+                            <td id="nombreLiq1">-</td>
+                            <td id="liquidoLiq1">-</td>
+                            <td><span class="badge bg-success">Disponible</span></td>
                             <td>
-                                <span class="badge bg-success">
-                                    Disponible
-                                </span>
-                            </td>
-
-                            <td>
-
-                                <button
-                                    type="button"
-                                    class="btn btn-success btn-sm"
-                                    id="descargarLiquidacion1">
-
-                                    Descargar
+                                <button type="button" class="btn btn-success btn-sm" id="descargarLiquidacion1">
+                                    <i class="bi bi-file-earmark-pdf-fill"></i> Descargar
                                 </button>
-
                             </td>
-
                         </tr>
-
-                        <!-- FILA 2 -->
                         <tr>
-
                             <td>Febrero</td>
-
                             <td>2026</td>
-
+                            <td id="nombreLiq2">-</td>
+                            <td id="liquidoLiq2">-</td>
+                            <td><span class="badge bg-success">Disponible</span></td>
                             <td>
-                                <span class="badge bg-success">
-                                    Disponible
-                                </span>
-                            </td>
-
-                            <td>
-
-                                <button
-                                    type="button"
-                                    class="btn btn-success btn-sm"
-                                    id="descargarLiquidacion2">
-
-                                    Descargar
+                                <button type="button" class="btn btn-success btn-sm" id="descargarLiquidacion2">
+                                    <i class="bi bi-file-earmark-pdf-fill"></i> Descargar
                                 </button>
-
                             </td>
-
                         </tr>
-
-                        <!-- FILA 3 -->
                         <tr>
-
                             <td>Marzo</td>
-
                             <td>2026</td>
-
+                            <td id="nombreLiq3">-</td>
+                            <td id="liquidoLiq3">-</td>
+                            <td><span class="badge bg-warning text-dark">Pendiente</span></td>
                             <td>
-                                <span class="badge bg-warning text-dark">
-                                    Pendiente
-                                </span>
-                            </td>
-
-                            <td>
-
-                                <button
-                                    type="button"
-                                    class="btn btn-secondary btn-sm"
-                                    id="liquidacionPendiente">
-
-                                    No Disponible
+                                <button type="button" class="btn btn-secondary btn-sm" id="liquidacionPendiente" disabled>
+                                    <i class="bi bi-clock-fill"></i> No Disponible
                                 </button>
-
                             </td>
-
                         </tr>
-
                     </tbody>
-
                 </table>
-
             </div>
 
-            <!-- BOTON VOLVER -->
             <div class="text-center mt-5">
-
-                <a href="portalEmpleado.html"
-                    class="btn btn-secondary px-4">
-
+                <a href="portalEmpleado.html" class="btn btn-secondary px-4">
                     <i class="bi bi-arrow-left-circle-fill"></i>
                     Volver
                 </a>
-
             </div>
 
         </section>
@@ -181,5 +109,4 @@
     </main>
 
 </body>
-
 </html>

@@ -12,6 +12,7 @@
 </head>
 
 <body>
+
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
         <div class="container">
             <a class="navbar-brand" href="principal.html">
@@ -22,91 +23,136 @@
             </a>
         </div>
     </nav>
+
     <main class="container mt-5 mb-5">
+
         <section class="shadow p-5 bg-white rounded">
+
             <div class="text-center mb-5">
                 <h1 class="display-5">Control de Asistencia</h1>
-                <p class="lead text-muted">
-                    Revisión de entradas, salidas, atrasos y horas trabajadas.
-                </p>
+                <p class="lead text-muted">Revisión de entradas, salidas, atrasos y horas trabajadas.</p>
             </div>
-            <div class="row g-4 mb-5">
+
+            <!-- FORMULARIO DE REGISTRO -->
+            <div class="card border-0 shadow-sm mb-5">
+                <div class="card-header bg-dark text-white fw-bold">
+                    <i class="bi bi-pencil-square me-2"></i> Registrar Asistencia
+                </div>
+                <div class="card-body">
+                    <div class="row g-3">
+
+                        <div class="col-md-6">
+                            <label class="form-label fw-bold">Nombre del Trabajador</label>
+                            <input type="text" class="form-control" id="asistNombre" placeholder="Ingrese nombre completo">
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label fw-bold">RUT</label>
+                            <input type="text" class="form-control" id="asistRut" placeholder="Ej: 12.345.678-9">
+                        </div>
+
+                        <div class="col-md-4">
+                            <label class="form-label fw-bold">Fecha</label>
+                            <input type="date" class="form-control" id="asistFecha">
+                        </div>
+
+                        <div class="col-md-4">
+                            <label class="form-label fw-bold">Hora de Entrada</label>
+                            <input type="time" class="form-control" id="asistEntrada">
+                        </div>
+
+                        <div class="col-md-4">
+                            <label class="form-label fw-bold">Hora de Salida</label>
+                            <input type="time" class="form-control" id="asistSalida" readonly placeholder="Se calcula sola">
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label fw-bold">¿Ausente?</label>
+                            <select class="form-select" id="asistAusente">
+                                <option value="No">No</option>
+                                <option value="Sí">Sí</option>
+                            </select>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label fw-bold">Hora límite de entrada</label>
+                            <input type="time" class="form-control" id="asistHoraLimite" value="08:30" readonly>
+                        </div>
+
+                    </div>
+
+                    <div class="text-center mt-4">
+                        <button type="button" class="btn btn-success px-4 me-2" id="registrarAsistencia">
+                            <i class="bi bi-save-fill"></i> Registrar
+                        </button>
+                        <button type="button" class="btn btn-outline-danger px-4" id="limpiarAsistencia">
+                            <i class="bi bi-trash-fill"></i> Limpiar Todo
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FILTROS -->
+            <div class="row g-3 mb-4">
                 <div class="col-md-4">
-                    <label class="form-label fw-bold">Nombre del Trabajador</label>
-                    <input type="text" class="form-control" placeholder="Ingrese nombre">
+                    <label class="form-label fw-bold">Filtrar por Nombre</label>
+                    <input type="text" class="form-control" id="filtroNombre" placeholder="Ingrese nombre">
                 </div>
                 <div class="col-md-4">
                     <label class="form-label fw-bold">Fecha Inicio</label>
-                    <input type="date" class="form-control">
+                    <input type="date" class="form-control" id="filtroFechaInicio">
                 </div>
                 <div class="col-md-4">
                     <label class="form-label fw-bold">Fecha Término</label>
-                    <input type="date" class="form-control">
+                    <input type="date" class="form-control" id="filtroFechaTermino">
+                </div>
+                <div class="col-12 text-end">
+                    <button type="button" class="btn btn-dark btn-sm px-4" id="aplicarFiltro">
+                        <i class="bi bi-search"></i> Filtrar
+                    </button>
+                    <button type="button" class="btn btn-secondary btn-sm px-4 ms-2" id="limpiarFiltro">
+                        <i class="bi bi-x-circle"></i> Limpiar Filtro
+                    </button>
                 </div>
             </div>
+
+            <!-- TABLA -->
             <div class="table-responsive shadow-sm rounded">
                 <table class="table table-bordered table-hover align-middle text-center">
                     <thead class="table-dark">
                         <tr>
                             <th>Fecha</th>
+                            <th>Nombre</th>
+                            <th>RUT</th>
                             <th>Hora Entrada</th>
                             <th>Hora Salida</th>
                             <th>Horas Trabajadas</th>
                             <th>Atrasos</th>
                             <th>Ausencias</th>
                             <th>Estado</th>
+                            <th>Acción</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody id="tablaAsistencia">
                         <tr>
-                            <td>01/06/2026</td>
-                            <td>08:00</td>
-                            <td>18:00</td>
-                            <td>9 Horas</td>
-                            <td>No</td>
-                            <td>No</td>
-                            <td>
-                                <span class="badge bg-success">Presente</span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>02/06/2026</td>
-                            <td>08:20</td>
-                            <td>18:00</td>
-                            <td>8 Horas</td>
-                            <td>Sí</td>
-                            <td>No</td>
-                            <td>
-                                <span class="badge bg-warning text-dark">Atraso</span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>03/06/2026</td>
-                            <td>-</td>
-                            <td>-</td>
-                            <td>0 Horas</td>
-                            <td>No</td>
-                            <td>Sí</td>
-                            <td>
-                                <span class="badge bg-danger">Ausente</span>
-                            </td>
+                            <td colspan="10" class="text-muted text-center">No hay registros de asistencia.</td>
                         </tr>
                     </tbody>
                 </table>
             </div>
+
             <div class="text-center mt-5">
                 <button type="button" class="btn btn-success px-4 me-2" id="imprimirAsistencia">
-
-                    <i class="bi bi-printer-fill"></i>
-                    Imprimir Registro
-
+                    <i class="bi bi-printer-fill"></i> Imprimir Registro
                 </button>
                 <a href="portalEmpleado.html" class="btn btn-secondary px-4">
                     <i class="bi bi-arrow-left-circle-fill"></i> Volver
                 </a>
             </div>
-        </section>
-    </main>
-</body>
 
+        </section>
+
+    </main>
+
+</body>
 </html>

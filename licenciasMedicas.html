@@ -14,21 +14,16 @@
 <body>
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
-
         <div class="container">
-
             <a class="navbar-brand" href="principal.html">
                 <i class="bi bi-shield-lock-fill text-success"></i>
                 Seguridad LTDA
             </a>
-
             <a href="portalEmpleado.html" class="btn btn-outline-light btn-sm">
                 <i class="bi bi-arrow-left-circle-fill"></i>
                 Volver al Portal
             </a>
-
         </div>
-
     </nav>
 
     <main class="container mt-5 mb-5">
@@ -36,15 +31,8 @@
         <section class="shadow p-5 bg-white rounded">
 
             <div class="text-center mb-5">
-
-                <h1 class="display-5">
-                    Licencias Médicas
-                </h1>
-
-                <p class="lead text-muted">
-                    Registro y seguimiento de licencias médicas del personal.
-                </p>
-
+                <h1 class="display-5">Licencias Médicas</h1>
+                <p class="lead text-muted">Registro y seguimiento de licencias médicas del personal.</p>
             </div>
 
             <form>
@@ -52,34 +40,19 @@
                 <div class="row g-4">
 
                     <div class="col-md-6">
-
-                        <label class="form-label fw-bold">
-                            Nombre del Trabajador
-                        </label>
-
-                        <input type="text" class="form-control" placeholder="Ingrese nombre completo">
+                        <label class="form-label fw-bold">Nombre del Trabajador</label>
+                        <input type="text" class="form-control" id="licNombre" placeholder="Ingrese nombre completo">
                     </div>
 
                     <div class="col-md-6">
-
-                        <label class="form-label fw-bold">
-                            RUT
-                        </label>
-
-                        <input type="text" class="form-control" placeholder="Ej: 12.345.678-9">
+                        <label class="form-label fw-bold">RUT</label>
+                        <input type="text" class="form-control" id="licRut" placeholder="Ej: 12.345.678-9">
                     </div>
 
                     <div class="col-md-6">
-
-                        <label class="form-label fw-bold">
-                            Tipo de Licencia
-                        </label>
-
-                        <select class="form-select">
-                            <option selected>
-                                Seleccione tipo
-                            </option>
-
+                        <label class="form-label fw-bold">Tipo de Licencia</label>
+                        <select class="form-select" id="licTipo">
+                            <option selected value="">Seleccione tipo</option>
                             <option>Licencia Común</option>
                             <option>Accidente Laboral</option>
                             <option>Licencia Maternal</option>
@@ -88,92 +61,80 @@
                     </div>
 
                     <div class="col-md-6">
-
-                        <label class="form-label fw-bold">
-                            Estado
-                        </label>
-
-                        <select class="form-select">
-                            <option selected>
-                                Seleccione estado
-                            </option>
-
-                            <option>Aprobada</option>
-                            <option>Rechazada</option>
-                            <option>En Revisión</option>
-                        </select>
+                        <label class="form-label fw-bold">Centro Médico</label>
+                        <input type="text" class="form-control" id="licCentro" placeholder="Ingrese centro médico">
                     </div>
 
                     <div class="col-md-6">
-
-                        <label class="form-label fw-bold">
-                            Fecha de Inicio
-                        </label>
-
-                        <input type="date" class="form-control">
+                        <label class="form-label fw-bold">Fecha de Inicio</label>
+                        <input type="date" class="form-control" id="licFechaInicio">
                     </div>
 
                     <div class="col-md-6">
-
-                        <label class="form-label fw-bold">
-                            Fecha de Término
-                        </label>
-
-                        <input type="date" class="form-control">
+                        <label class="form-label fw-bold">Fecha de Término</label>
+                        <input type="date" class="form-control" id="licFechaTermino">
                     </div>
 
-                    <div class="col-md-6">
-
-                        <label class="form-label fw-bold">
-                            Centro Médico
-                        </label>
-
-                        <input type="text" class="form-control" placeholder="Ingrese centro médico">
-                    </div>
-
-                    <div class="col-md-6">
-
-                        <label class="form-label fw-bold">
-                            Médico Tratante
-                        </label>
-
-                        <input type="text" class="form-control" placeholder="Ingrese nombre del médico">
-                    </div>
-
-                    <div class="col-12">
-
-                        <label class="form-label fw-bold">
-                            Observaciones
-                        </label>
-
-                        <textarea class="form-control" rows="4" placeholder="Ingrese observaciones"></textarea>
+                    <div class="col-md-12">
+                        <label class="form-label fw-bold">Médico Tratante</label>
+                        <input type="text" class="form-control" id="licMedico" placeholder="Ingrese nombre del médico">
                     </div>
 
                 </div>
 
                 <div class="text-center mt-5">
-
                     <button type="button" class="btn btn-success px-4 me-2" id="registrarLicencia">
-
                         <i class="bi bi-heart-pulse-fill"></i>
                         Registrar Licencia
-
                     </button>
-
-                    <a href="portalEmpleado.html" class="btn btn-secondary px-4">
-
-                        <i class="bi bi-arrow-left-circle-fill"></i>
-                        Volver
-                    </a>
-
+                    <button type="button" class="btn btn-outline-danger px-4" id="limpiarLicencias">
+                        <i class="bi bi-trash-fill"></i>
+                        Limpiar Todo
+                    </button>
                 </div>
 
             </form>
+
+            <!-- HISTORIAL -->
+            <div class="mt-5">
+
+                <h3 class="mb-3">Historial de Licencias</h3>
+
+                <div class="table-responsive shadow-sm rounded">
+                    <table class="table table-bordered table-hover text-center align-middle">
+                        <thead class="table-dark">
+                            <tr>
+                                <th>Nombre</th>
+                                <th>RUT</th>
+                                <th>Tipo</th>
+                                <th>Centro Médico</th>
+                                <th>Médico</th>
+                                <th>Fecha Inicio</th>
+                                <th>Fecha Término</th>
+                                <th>Días</th>
+                                <th>Acción</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tablaLicencias">
+                            <tr>
+                                <td colspan="9" class="text-center text-muted">No existen licencias registradas.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+
+            <div class="text-center mt-5">
+                <a href="portalEmpleado.html" class="btn btn-secondary px-4">
+                    <i class="bi bi-arrow-left-circle-fill"></i>
+                    Volver
+                </a>
+            </div>
 
         </section>
 
     </main>
 
 </body>
-
 </html>
