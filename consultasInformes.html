@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,130 +8,240 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="css/estilos.css">
-    <script src="js/script.js"></script>
+    <script src="js/script.js" defer></script>
 </head>
+
 <body>
+
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
+
         <div class="container">
+
             <a class="navbar-brand" href="principal.html">
-                <i class="bi bi-shield-lock-fill text-success"></i> Seguridad LTDA
+                <i class="bi bi-shield-lock-fill text-success"></i>
+                Seguridad LTDA
             </a>
+
             <a href="portalEmpleado.html" class="btn btn-outline-light btn-sm">
-                <i class="bi bi-arrow-left-circle-fill"></i> Volver al Portal
+                <i class="bi bi-arrow-left-circle-fill"></i>
+                Volver al Portal
             </a>
+
         </div>
+
     </nav>
+
     <main class="container mt-5 mb-5">
+
         <section class="shadow p-5 bg-white rounded">
+
             <div class="text-center mb-5">
-                <h1 class="display-5">Consultas e Informes</h1>
+
+                <h1 class="display-5">
+                    Consultas e Informes
+                </h1>
+
                 <p class="lead text-muted">
                     Reportes y consultas relacionadas con Recursos Humanos.
                 </p>
+
             </div>
+
             <div class="row g-4">
-                <div class="col-md-6 col-lg-4">
-                    <div class="card h-100 shadow-sm border-0">
-                        <div class="card-body text-center">
+
+                <!-- REPORTES -->
+                <div class="col-md-6 col-lg-4 d-flex align-items-stretch">
+
+                    <div class="card h-100 shadow-sm border-0 w-100">
+
+                        <div class="card-body text-center d-flex flex-column">
+
                             <div class="fs-1 text-success mb-3">
                                 <i class="bi bi-bar-chart-fill"></i>
                             </div>
-                            <h5 class="card-title">Reportes del Personal</h5>
-                            <p class="card-text text-secondary small">
+
+                            <h5 class="card-title">
+                                Reportes del Personal
+                            </h5>
+
+                            <p class="card-text text-secondary small flex-grow-1">
                                 Consulta información completa del personal y estadísticas.
                             </p>
-                            <button class="btn btn-success btn-sm w-100">
+
+                            <button type="button" class="btn btn-success btn-sm w-100" id="verReportes">
+
                                 Ver Reportes
+
                             </button>
+
                         </div>
+
                     </div>
+
                 </div>
-                <div class="col-md-6 col-lg-4">
-                    <div class="card h-100 shadow-sm border-0">
-                        <div class="card-body text-center">
+
+                <!-- LIQUIDACIONES -->
+                <div class="col-md-6 col-lg-4 d-flex align-items-stretch">
+
+                    <div class="card h-100 shadow-sm border-0 w-100">
+
+                        <div class="card-body text-center d-flex flex-column">
+
                             <div class="fs-1 text-success mb-3">
                                 <i class="bi bi-cash-stack"></i>
                             </div>
-                            <h5 class="card-title">Liquidaciones</h5>
-                            <p class="card-text text-secondary small">
+
+                            <h5 class="card-title">
+                                Liquidaciones
+                            </h5>
+
+                            <p class="card-text text-secondary small flex-grow-1">
                                 Visualización de descuentos, haberes y remuneraciones.
                             </p>
-                            <button class="btn btn-success btn-sm w-100">
+
+                            <button type="button" class="btn btn-success btn-sm w-100">
                                 Ver Liquidaciones
                             </button>
+
                         </div>
+
                     </div>
+
                 </div>
-                <div class="col-md-6 col-lg-4">
-                    <div class="card h-100 shadow-sm border-0">
-                        <div class="card-body text-center">
+
+                <!-- VACACIONES -->
+                <div class="col-md-6 col-lg-4 d-flex align-items-stretch">
+
+                    <div class="card h-100 shadow-sm border-0 w-100">
+
+                        <div class="card-body text-center d-flex flex-column">
+
                             <div class="fs-1 text-success mb-3">
                                 <i class="bi bi-airplane-fill"></i>
                             </div>
-                            <h5 class="card-title">Vacaciones</h5>
-                            <p class="card-text text-secondary small">
+
+                            <h5 class="card-title">
+                                Vacaciones
+                            </h5>
+
+                            <p class="card-text text-secondary small flex-grow-1">
                                 Historial y planificación de vacaciones del personal.
                             </p>
-                            <button class="btn btn-success btn-sm w-100">
+
+                            <button type="button" class="btn btn-success btn-sm w-100">
                                 Ver Vacaciones
                             </button>
+
                         </div>
+
                     </div>
+
                 </div>
-                <div class="col-md-6 col-lg-4">
-                    <div class="card h-100 shadow-sm border-0">
-                        <div class="card-body text-center">
+
+                <!-- CONTRATOS -->
+                <div class="col-md-6 col-lg-4 d-flex align-items-stretch">
+
+                    <div class="card h-100 shadow-sm border-0 w-100">
+
+                        <div class="card-body text-center d-flex flex-column">
+
                             <div class="fs-1 text-success mb-3">
                                 <i class="bi bi-file-earmark-text-fill"></i>
                             </div>
-                            <h5 class="card-title">Contratos y Finiquitos</h5>
-                            <p class="card-text text-secondary small">
+
+                            <h5 class="card-title">
+                                Contratos y Finiquitos
+                            </h5>
+
+                            <p class="card-text text-secondary small flex-grow-1">
                                 Consulta de contratos, certificados y documentos laborales.
                             </p>
-                            <button class="btn btn-success btn-sm w-100">
+
+                            <button type="button" class="btn btn-success btn-sm w-100">
                                 Ver Documentos
                             </button>
+
                         </div>
+
                     </div>
-                <div class="col-md-6 col-lg-4">
-                    <div class="card h-100 shadow-sm border-0">
-                        <div class="card-body text-center">
+
+                </div>
+
+                <!-- ASISTENCIA -->
+                <div class="col-md-6 col-lg-4 d-flex align-items-stretch">
+
+                    <div class="card h-100 shadow-sm border-0 w-100">
+
+                        <div class="card-body text-center d-flex flex-column">
+
                             <div class="fs-1 text-success mb-3">
                                 <i class="bi bi-clock-history"></i>
                             </div>
-                            <h5 class="card-title">Asistencia</h5>
-                            <p class="card-text text-secondary small">
+
+                            <h5 class="card-title">
+                                Asistencia
+                            </h5>
+
+                            <p class="card-text text-secondary small flex-grow-1">
                                 Consulta atrasos, ausencias y horas trabajadas.
                             </p>
-                            <button class="btn btn-success btn-sm w-100">
+
+                            <button type="button" class="btn btn-success btn-sm w-100">
                                 Ver Asistencia
                             </button>
+
                         </div>
+
                     </div>
+
                 </div>
-                <div class="col-md-6 col-lg-4">
-                    <div class="card h-100 shadow-sm border-0">
-                        <div class="card-body text-center">
+
+                <!-- LICENCIAS -->
+                <div class="col-md-6 col-lg-4 d-flex align-items-stretch">
+
+                    <div class="card h-100 shadow-sm border-0 w-100">
+
+                        <div class="card-body text-center d-flex flex-column">
+
                             <div class="fs-1 text-success mb-3">
                                 <i class="bi bi-heart-pulse-fill"></i>
                             </div>
-                            <h5 class="card-title">Licencias Médicas</h5>
-                            <p class="card-text text-secondary small">
+
+                            <h5 class="card-title">
+                                Licencias Médicas
+                            </h5>
+
+                            <p class="card-text text-secondary small flex-grow-1">
                                 Detalle de licencias médicas y estados de aprobación.
                             </p>
-                            <button class="btn btn-success btn-sm w-100">
+
+                            <button type="button" class="btn btn-success btn-sm w-100">
                                 Ver Licencias
                             </button>
+
                         </div>
+
                     </div>
+
                 </div>
+
             </div>
+
             <div class="text-center mt-5">
+
                 <a href="portalEmpleado.html" class="btn btn-secondary px-4">
-                    <i class="bi bi-arrow-left-circle-fill"></i> Volver al Portal
+
+                    <i class="bi bi-arrow-left-circle-fill"></i>
+                    Volver al Portal
+
                 </a>
+
             </div>
+
         </section>
+
     </main>
+
 </body>
+
 </html>

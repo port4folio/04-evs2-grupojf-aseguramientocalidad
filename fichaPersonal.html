@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,108 +8,199 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="css/estilos.css">
-    <script src="js/script.js"></script>
+    <script src="js/script.js" defer></script>
 </head>
+
 <body>
+
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
+
         <div class="container">
+
             <a class="navbar-brand" href="principal.html">
-                <i class="bi bi-shield-lock-fill text-success"></i> Seguridad LTDA
+                <i class="bi bi-shield-lock-fill text-success"></i>
+                Seguridad LTDA
             </a>
+
             <a href="portalEmpleado.html" class="btn btn-outline-light btn-sm">
-                <i class="bi bi-arrow-left-circle-fill"></i> Volver al Portal
+                <i class="bi bi-arrow-left-circle-fill"></i>
+                Volver al Portal
             </a>
+
         </div>
+
     </nav>
+
     <main class="container mt-5 mb-5">
+
         <section class="shadow p-5 bg-white rounded">
+
             <div class="text-center mb-5">
-                <h1 class="display-5">Ficha Personal del Empleado</h1>
+
+                <h1 class="display-5">
+                    Ficha Personal del Empleado
+                </h1>
+
                 <p class="lead text-muted">
                     Complete y actualice la información personal y laboral del trabajador.
                 </p>
+
             </div>
+
             <form>
+
                 <div class="row g-4">
+
                     <div class="col-md-6">
-                        <label class="form-label fw-bold">Nombre Completo</label>
+                        <label class="form-label fw-bold">
+                            Nombre Completo
+                        </label>
+
                         <input type="text" class="form-control" placeholder="Ingrese nombre completo">
                     </div>
+
                     <div class="col-md-6">
-                        <label class="form-label fw-bold">RUT</label>
-                        <input type="text" class="form-control" placeholder="12.345.678-9">
+                        <label class="form-label fw-bold">
+                            RUT
+                        </label>
+
+                        <input type="text" class="form-control" placeholder="Ej: 12.345.678-9">
                     </div>
+
                     <div class="col-md-6">
-                        <label class="form-label fw-bold">Dirección</label>
+                        <label class="form-label fw-bold">
+                            Dirección
+                        </label>
+
                         <input type="text" class="form-control" placeholder="Ingrese dirección">
                     </div>
+
                     <div class="col-md-6">
-                        <label class="form-label fw-bold">Teléfono</label>
+                        <label class="form-label fw-bold">
+                            Teléfono
+                        </label>
+
                         <input type="tel" class="form-control" placeholder="+56 9 1234 5678">
                     </div>
+
                     <div class="col-md-6">
-                        <label class="form-label fw-bold">Correo Electrónico</label>
+                        <label class="form-label fw-bold">
+                            Correo Electrónico
+                        </label>
+
                         <input type="email" class="form-control" placeholder="correo@empresa.cl">
                     </div>
+
                     <div class="col-md-6">
-                        <label class="form-label fw-bold">Cargo</label>
+                        <label class="form-label fw-bold">
+                            Cargo
+                        </label>
+
                         <input type="text" class="form-control" placeholder="Ingrese cargo">
                     </div>
+
                     <div class="col-md-6">
-                        <label class="form-label fw-bold">Centro de Costo</label>
+                        <label class="form-label fw-bold">
+                            Centro de Costo
+                        </label>
+
                         <input type="text" class="form-control" placeholder="Ingrese centro de costo">
                     </div>
+
                     <div class="col-md-6">
-                        <label class="form-label fw-bold">AFP</label>
+                        <label class="form-label fw-bold">
+                            AFP
+                        </label>
+
                         <select class="form-select">
-                            <option selected>Seleccione AFP</option>
+                            <option selected>
+                                Seleccione AFP
+                            </option>
+
                             <option>AFP Habitat</option>
                             <option>AFP Provida</option>
                             <option>AFP Capital</option>
                             <option>AFP Modelo</option>
                         </select>
                     </div>
+
                     <div class="col-md-6">
-                        <label class="form-label fw-bold">Sistema de Salud</label>
+                        <label class="form-label fw-bold">
+                            Sistema de Salud
+                        </label>
+
                         <select class="form-select">
-                            <option selected>Seleccione sistema</option>
+                            <option selected>
+                                Seleccione sistema
+                            </option>
+
                             <option>Fonasa</option>
                             <option>Isapre</option>
                         </select>
                     </div>
+
                     <div class="col-md-6">
-                        <label class="form-label fw-bold">Fecha de Ingreso</label>
-                        <input 
-                                type="text" 
-                                class="form-control" 
-                                placeholder="Ej: 13 - Abril - 2026"
-                                onfocus="(this.type='date')"
-                                onblur="if(!this.value)this.type='text'"
-                            >
+
+                        <label class="form-label fw-bold">
+                            Fecha de Ingreso
+                        </label>
+
+                        <input type="text" class="form-control" placeholder="Ej: 13 - Abril - 2026"
+                            onfocus="(this.type='date')" onblur="if(!this.value)this.type='text'">
                     </div>
+
                     <div class="col-md-6">
-                        <label class="form-label fw-bold">Números de Cargas Familiares</label>
-                        <input type="text" class="form-control" placeholder="Ingrese Número de Cargas Familiares">
+
+                        <label class="form-label fw-bold">
+                            Número de Cargas Familiares
+                        </label>
+
+                        <input type="text" class="form-control" placeholder="Ingrese número de cargas familiares">
                     </div>
+
                     <div class="col-12">
-                        <label class="form-label fw-bold">Fotografía del Empleado</label>
+
+                        <label class="form-label fw-bold">
+                            Fotografía del Empleado
+                        </label>
+
                         <input type="file" class="form-control">
                     </div>
+
                     <div class="col-12">
-                        <label class="form-label fw-bold">Observaciones</label>
+
+                        <label class="form-label fw-bold">
+                            Observaciones
+                        </label>
+
                         <textarea class="form-control" rows="4" placeholder="Ingrese observaciones"></textarea>
                     </div>
+
                 </div>
+
                 <div class="text-center mt-5">
-                    <button type="submit" class="btn btn-success px-4 me-2">
-                        <i class="bi bi-save-fill"></i> Guardar Información
+
+                    <button type="button" class="btn btn-success px-4 me-2" id="guardarFicha">
+
+                        <i class="bi bi-save-fill"></i>
+                        Guardar Información
+
                     </button>
+
                     <a href="portalEmpleado.html" class="btn btn-secondary px-4">
-                        <i class="bi bi-arrow-left-circle-fill"></i> Volver
+
+                        <i class="bi bi-arrow-left-circle-fill"></i>
+                        Volver
                     </a>
+
                 </div>
+
             </form>
+
         </section>
+
     </main>
+
 </body>
+
 </html>

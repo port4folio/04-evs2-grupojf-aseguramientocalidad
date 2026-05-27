@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,86 +8,187 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="css/estilos.css">
-    <script src="js/script.js"></script>
+    <script src="js/script.js" defer></script>
 </head>
+
 <body>
+
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
+
         <div class="container">
+
             <a class="navbar-brand" href="principal.html">
-                <i class="bi bi-shield-lock-fill text-success"></i> Seguridad LTDA
+                <i class="bi bi-shield-lock-fill text-success"></i>
+                Seguridad LTDA
             </a>
+
             <a href="portalEmpleado.html" class="btn btn-outline-light btn-sm">
-                <i class="bi bi-arrow-left-circle-fill"></i> Volver al Portal
+                <i class="bi bi-arrow-left-circle-fill"></i>
+                Volver al Portal
             </a>
+
         </div>
+
     </nav>
+
     <main class="container mt-5 mb-5">
+
         <section class="shadow p-5 bg-white rounded">
+
             <div class="text-center mb-5">
-                <h1 class="display-5">Modelo de Cálculo Paramétrico</h1>
+
+                <h1 class="display-5">
+                    Modelo de Cálculo Paramétrico
+                </h1>
+
                 <p class="lead text-muted">
                     Configure haberes, descuentos y parámetros utilizados para el cálculo de remuneraciones.
                 </p>
+
             </div>
+
             <form>
+
                 <div class="row g-4">
+
                     <div class="col-md-6">
-                        <label class="form-label fw-bold">Sueldo Base</label>
-                        <input type="number" class="form-control" placeholder="Ingrese sueldo base">
+                        <label class="form-label fw-bold">
+                            Sueldo Base
+                        </label>
+
+                        <input type="number"
+                               class="form-control"
+                               placeholder="Ingrese sueldo base">
                     </div>
+
                     <div class="col-md-6">
-                        <label class="form-label fw-bold">Horas Extras</label>
-                        <input type="number" class="form-control" placeholder="Ingrese horas extras">
+                        <label class="form-label fw-bold">
+                            Horas Extras
+                        </label>
+
+                        <input type="number"
+                               class="form-control"
+                               placeholder="Ingrese horas extras">
                     </div>
+
                     <div class="col-md-6">
-                        <label class="form-label fw-bold">Bonos</label>
-                        <input type="number" class="form-control" placeholder="Ingrese bonos">
+                        <label class="form-label fw-bold">
+                            Bonos
+                        </label>
+
+                        <input type="number"
+                               class="form-control"
+                               placeholder="Ingrese bonos">
                     </div>
+
                     <div class="col-md-6">
-                        <label class="form-label fw-bold">Descuentos</label>
-                        <input type="number" class="form-control" placeholder="Ingrese descuentos">
+                        <label class="form-label fw-bold">
+                            Descuentos
+                        </label>
+
+                        <input type="number"
+                               class="form-control"
+                               placeholder="Ingrese descuentos">
                     </div>
+
                     <div class="col-md-6">
-                        <label class="form-label fw-bold">AFP</label>
+
+                        <label class="form-label fw-bold">
+                            AFP
+                        </label>
+
                         <select class="form-select">
-                            <option selected>Seleccione AFP</option>
+
+                            <option selected>
+                                Seleccione AFP
+                            </option>
+
                             <option>AFP Habitat</option>
                             <option>AFP Provida</option>
                             <option>AFP Capital</option>
                             <option>AFP Modelo</option>
+
                         </select>
                     </div>
+
                     <div class="col-md-6">
-                        <label class="form-label fw-bold">Sistema de Salud</label>
+
+                        <label class="form-label fw-bold">
+                            Sistema de Salud
+                        </label>
+
                         <select class="form-select">
-                            <option selected>Seleccione sistema</option>
+
+                            <option selected>
+                                Seleccione sistema
+                            </option>
+
                             <option>Fonasa</option>
                             <option>Isapre</option>
+
                         </select>
                     </div>
+
                     <div class="col-md-6">
-                        <label class="form-label fw-bold">Asignación de Colación</label>
-                        <input type="number" class="form-control" placeholder="Ingrese asignación">
+
+                        <label class="form-label fw-bold">
+                            Asignación de Colación
+                        </label>
+
+                        <input type="number"
+                               class="form-control"
+                               placeholder="Ingrese asignación">
                     </div>
+
                     <div class="col-md-6">
-                        <label class="form-label fw-bold">Asignación de Movilización</label>
-                        <input type="number" class="form-control" placeholder="Ingrese asignación">
+
+                        <label class="form-label fw-bold">
+                            Asignación de Movilización
+                        </label>
+
+                        <input type="number"
+                               class="form-control"
+                               placeholder="Ingrese asignación">
                     </div>
+
                     <div class="col-12">
-                        <label class="form-label fw-bold">Observaciones</label>
-                        <textarea class="form-control" rows="4" placeholder="Ingrese observaciones"></textarea>
+
+                        <label class="form-label fw-bold">
+                            Observaciones
+                        </label>
+
+                        <textarea class="form-control"
+                                  rows="4"
+                                  placeholder="Ingrese observaciones"></textarea>
                     </div>
+
                 </div>
+
                 <div class="text-center mt-5">
-                    <button type="submit" class="btn btn-success px-4 me-2">
-                        <i class="bi bi-calculator-fill"></i> Calcular Remuneración
+
+                    <button
+                        type="button"
+                        class="btn btn-success px-4 me-2"
+                        id="calcularRemuneracion">
+
+                        <i class="bi bi-calculator-fill"></i>
+                        Calcular Remuneración
                     </button>
-                    <a href="portalEmpleado.html" class="btn btn-secondary px-4">
-                        <i class="bi bi-arrow-left-circle-fill"></i> Volver
+
+                    <a href="portalEmpleado.html"
+                       class="btn btn-secondary px-4">
+
+                        <i class="bi bi-arrow-left-circle-fill"></i>
+                        Volver
                     </a>
+
                 </div>
+
             </form>
+
         </section>
+
     </main>
+
 </body>
 </html>

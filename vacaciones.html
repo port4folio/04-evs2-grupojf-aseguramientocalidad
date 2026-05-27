@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,88 +10,168 @@
     <link rel="stylesheet" href="css/estilos.css">
     <script src="js/script.js" defer></script>
 </head>
+
 <body>
+
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
+
         <div class="container">
+
             <a class="navbar-brand" href="principal.html">
-                <i class="bi bi-shield-lock-fill text-success"></i> Seguridad LTDA
+                <i class="bi bi-shield-lock-fill text-success"></i>
+                Seguridad LTDA
             </a>
+
             <a href="portalEmpleado.html" class="btn btn-outline-light btn-sm">
-                <i class="bi bi-arrow-left-circle-fill"></i> Volver al Portal
+                <i class="bi bi-arrow-left-circle-fill"></i>
+                Volver al Portal
             </a>
+
         </div>
+
     </nav>
+
     <main class="container mt-5 mb-5">
+
         <section class="shadow p-5 bg-white rounded">
+
             <div class="text-center mb-5">
-                <h1 class="display-5">Planificación y Control de Vacaciones</h1>
+
+                <h1 class="display-5">
+                    Planificación y Control de Vacaciones
+                </h1>
+
                 <p class="lead text-muted">
                     Solicitud y administración de vacaciones del personal.
                 </p>
+
             </div>
+
             <form>
+
                 <div class="row g-4">
+
                     <div class="col-md-6">
-                        <label class="form-label fw-bold">Nombre del Trabajador</label>
-                        <input type="text" class="form-control" id="nombreTrabajador" placeholder="Ingrese nombre completo ej: Hernán Pérez Hernández">
+
+                        <label class="form-label fw-bold">
+                            Nombre del Trabajador
+                        </label>
+
+                        <input
+                            type="text"
+                            class="form-control"
+                            id="nombreTrabajador"
+                            placeholder="Ingrese nombre completo">
+
                     </div>
+
                     <div class="col-md-6">
-                        <label class="form-label fw-bold">RUT</label>
-                        <input type="text" class="form-control" id="rutTrabajador" placeholder="Ej: 12.345.678-9">
+
+                        <label class="form-label fw-bold">
+                            RUT
+                        </label>
+
+                        <input
+                            type="text"
+                            class="form-control"
+                            id="rutTrabajador"
+                            placeholder="Ej: 12.345.678-9">
+
                     </div>
+
                     <div class="col-md-6">
-                        <label class="form-label fw-bold">Fecha de Inicio de Vacaciones</label>
-                        <input 
-                            type="text" 
-                            class="form-control" 
+
+                        <label class="form-label fw-bold">
+                            Fecha de Inicio de Vacaciones
+                        </label>
+
+                        <input
+                            type="text"
+                            class="form-control"
                             id="fechaInicio"
                             placeholder="Ejemplo: 24 - Abril - 2025"
                             onfocus="(this.type='date')"
                             onblur="if(!this.value)this.type='text'">
+
                     </div>
+
                     <div class="col-md-6">
-                        <label class="form-label fw-bold">Fecha de Término de Vacaciones</label>
-                        <input type="text" 
-                        class="form-control" 
-                        id="fechaTermino" 
-                        placeholder="Ejemplo: 15 - Abril - 2025" 
-                        onfocus="(this.type='date')" 
-                        onblur="if(!this.value)this.type='text'">
+
+                        <label class="form-label fw-bold">
+                            Fecha de Término de Vacaciones
+                        </label>
+
+                        <input
+                            type="text"
+                            class="form-control"
+                            id="fechaTermino"
+                            placeholder="Ejemplo: 15 - Abril - 2025"
+                            onfocus="(this.type='date')"
+                            onblur="if(!this.value)this.type='text'">
+
                     </div>
-                    <div class="row g-4">
-                        <div class="col-md-8">
-                            <label class="form-label fw-bold">Resumen de Vacaciones</label>
-                            <input 
-                                type="text" 
-                                class="form-control" 
-                                id="resumenVacaciones"
-                                placeholder="Ej: 15 días de vacaciones contando desde el 25 de abril"
-                                readonly>
-                        </div>
-                    <div class="col-md-4">
-                            <label class="form-label fw-bold">Estado de la Solicitud</label>
-                            <select class="form-select" id="estadoSolicitud">
-                                <option selected>Pendiente</option>
-                                <option>Aprobada</option>
-                                <option>Rechazada</option>
-                            </select>
-                        </div>
+
+                </div>
+
+                <div class="row g-4 mt-1">
+
+                    <div class="col-md-8">
+
+                        <label class="form-label fw-bold">
+                            Resumen de Vacaciones
+                        </label>
+
+                        <input
+                            type="text"
+                            class="form-control"
+                            id="resumenVacaciones"
+                            placeholder="Ej: 15 días de vacaciones contando desde el 25 de abril"
+                            readonly>
+
                     </div>
+
                     <div class="col-12">
-                        <label class="form-label fw-bold">Motivo de Vacaciones</label>
-                        <textarea class="form-control" id="motivoVacaciones" rows="4" placeholder="Ingrese motivo de la solicitud"></textarea>
+
+                        <label class="form-label fw-bold">
+                            Motivo de Vacaciones
+                        </label>
+
+                        <textarea
+                            class="form-control"
+                            id="motivoVacaciones"
+                            rows="4"
+                            placeholder="Ingrese motivo de la solicitud"></textarea>
+
                     </div>
+
                 </div>
+
                 <div class="text-center mt-4">
-                    <button type="button" class="btn btn-success px-4" id="guardarVacacion">
-                        <i class="bi bi-save-fill"></i> Guardar Solicitud
+
+                    <button
+                        type="button"
+                        class="btn btn-success px-4"
+                        id="guardarVacacion">
+
+                        <i class="bi bi-save-fill"></i>
+                        Guardar Solicitud
+
                     </button>
+
                 </div>
+
                 <div class="mt-5">
-                    <h3 class="mb-3">Historial de Vacaciones</h3>
+
+                    <h3 class="mb-3">
+                        Historial de Vacaciones
+                    </h3>
+
                     <div class="table-responsive shadow-sm rounded">
+
                         <table class="table table-bordered table-hover text-center align-middle">
+
                             <thead class="table-dark">
+
                                 <tr>
                                     <th>Año</th>
                                     <th>Nombre</th>
@@ -100,24 +181,44 @@
                                     <th>Días Utilizados</th>
                                     <th>Estado</th>
                                 </tr>
+
                             </thead>
+
                             <tbody id="tablaVacaciones">
+
                                 <tr>
+
                                     <td colspan="7" class="text-center text-muted">
                                         No existen solicitudes registradas.
                                     </td>
+
                                 </tr>
+
                             </tbody>
+
                         </table>
+
                     </div>
+
                 </div>
+
                 <div class="text-center mt-5">
+
                     <a href="portalEmpleado.html" class="btn btn-secondary px-4">
-                        <i class="bi bi-arrow-left-circle-fill"></i> Volver
+
+                        <i class="bi bi-arrow-left-circle-fill"></i>
+                        Volver
+
                     </a>
+
                 </div>
+
             </form>
+
         </section>
+
     </main>
+
 </body>
+
 </html>
