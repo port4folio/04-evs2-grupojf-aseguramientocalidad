@@ -8,3 +8,5 @@
 ### Integrantes: 
  - Jorge Cáceres Fernández.
  - Felipe Godoy Ponce.
+
+ Actualización: se revisaron mejoras relacionadas con vacaciones, liquidaciones y certificados de antigüedad.
