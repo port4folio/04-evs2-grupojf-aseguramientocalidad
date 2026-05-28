@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reporte del Personal - Seguridad LTDA</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="css/estilos.css">
+    <script src="js/script.js" defer></script>
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
+        <div class="container">
+            <a class="navbar-brand" href="principal.html">
+                <i class="bi bi-shield-lock-fill text-success"></i>
+                Seguridad LTDA
+            </a>
+            <a href="consultasInformes.html" class="btn btn-outline-light btn-sm">
+                <i class="bi bi-arrow-left-circle-fill"></i>
+                Volver a Consultas
+            </a>
+        </div>
+    </nav>
+
+    <main class="container mt-5 mb-5">
+
+        <!-- FICHA PERSONAL -->
+        <section class="shadow p-4 bg-white rounded mb-4">
+
+            <h2 class="h4 mb-4">
+                <i class="bi bi-person-badge-fill text-success me-2"></i>
+                Datos del Trabajador
+            </h2>
+
+            <div id="sinFicha" class="alert alert-warning d-none">
+                <i class="bi bi-exclamation-triangle-fill me-2"></i>
+                No hay ficha personal registrada.
+                <a href="fichaPersonal.html" class="alert-link">Ir a Ficha Personal</a>
+            </div>
+
+            <div id="datosFicha" class="row g-3 d-none">
+                <div class="col-md-4">
+                    <p class="mb-1 text-muted small">Nombre</p>
+                    <p class="fw-bold" id="rNombre">-</p>
+                </div>
+                <div class="col-md-4">
+                    <p class="mb-1 text-muted small">RUT</p>
+                    <p class="fw-bold" id="rRut">-</p>
+                </div>
+                <div class="col-md-4">
+                    <p class="mb-1 text-muted small">Cargo</p>
+                    <p class="fw-bold" id="rCargo">-</p>
+                </div>
+                <div class="col-md-4">
+                    <p class="mb-1 text-muted small">Dirección</p>
+                    <p class="fw-bold" id="rDireccion">-</p>
+                </div>
+                <div class="col-md-4">
+                    <p class="mb-1 text-muted small">Teléfono</p>
+                    <p class="fw-bold" id="rTelefono">-</p>
+                </div>
+                <div class="col-md-4">
+                    <p class="mb-1 text-muted small">Correo</p>
+                    <p class="fw-bold" id="rCorreo">-</p>
+                </div>
+                <div class="col-md-4">
+                    <p class="mb-1 text-muted small">AFP</p>
+                    <p class="fw-bold" id="rAfp">-</p>
+                </div>
+                <div class="col-md-4">
+                    <p class="mb-1 text-muted small">Sistema de Salud</p>
+                    <p class="fw-bold" id="rSalud">-</p>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- ANTICIPOS -->
+        <section class="shadow p-4 bg-white rounded mb-4">
+
+            <h2 class="h4 mb-4">
+                <i class="bi bi-cash-coin text-success me-2"></i>
+                Solicitudes de Anticipos
+            </h2>
+
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover text-center align-middle">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>Fecha</th>
+                            <th>Nombre</th>
+                            <th>RUT</th>
+                            <th>Monto</th>
+                            <th>Motivo</th>
+                            <th>Estado</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tablaReporteAnticipos">
+                        <tr>
+                            <td colspan="7" class="text-muted">Sin solicitudes de anticipo.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </section>
+
+        <!-- LICENCIAS -->
+        <section class="shadow p-4 bg-white rounded mb-4">
+
+            <h2 class="h4 mb-4">
+                <i class="bi bi-heart-pulse-fill text-success me-2"></i>
+                Licencias Médicas
+            </h2>
+
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover text-center align-middle">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>Nombre</th>
+                            <th>RUT</th>
+                            <th>Tipo</th>
+                            <th>Centro Médico</th>
+                            <th>Médico</th>
+                            <th>Fecha Inicio</th>
+                            <th>Fecha Término</th>
+                            <th>Días</th>
+                            <th>Estado</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tablaReporteLicencias">
+                        <tr>
+                            <td colspan="8" class="text-muted">Sin licencias registradas.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </section>
+
+        <!-- VACACIONES -->
+        <section class="shadow p-4 bg-white rounded mb-4">
+
+            <h2 class="h4 mb-4">
+                <i class="bi bi-airplane-fill text-success me-2"></i>
+                Solicitudes de Vacaciones
+            </h2>
+
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover text-center align-middle">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>Nombre</th>
+                            <th>RUT</th>
+                            <th>Fecha Inicio</th>
+                            <th>Fecha Término</th>
+                            <th>Días</th>
+                            <th>Estado</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tablaReporteVacaciones">
+                        <tr>
+                            <td colspan="6" class="text-muted">Sin solicitudes de vacaciones.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </section>
+
+        <div class="text-center mt-4">
+            <a href="consultasInformes.html" class="btn btn-secondary px-4">
+                <i class="bi bi-arrow-left-circle-fill"></i>
+                Volver
+            </a>
+        </div>
+
+    </main>
+
+</body>
+</html>

@@ -338,48 +338,116 @@ if (botonCalcular) {
 }
 
 /*CONTRATOS Y FINIQUITOS*/
-const botonGenerarDocumento = document.getElementById("generarDocumento");
 
+function obtenerContratos() {
+    return JSON.parse(localStorage.getItem("documentosGenerados")) || [];
+}
+
+function guardarContratos(docs) {
+    localStorage.setItem("documentosGenerados", JSON.stringify(docs));
+}
+
+function badgeTipoDoc(tipo) {
+    if (tipo === "Contrato")        return `<span class="badge bg-success">${tipo}</span>`;
+    if (tipo === "Finiquito")       return `<span class="badge bg-danger">${tipo}</span>`;
+    if (tipo === "Anexo de Contrato") return `<span class="badge bg-warning text-dark">${tipo}</span>`;
+    return `<span class="badge bg-secondary">${tipo}</span>`;
+}
+
+function renderTablaContratos(docs) {
+    const tabla = document.getElementById("tablaContratos");
+    if (!tabla) return;
+
+    if (docs.length === 0) {
+        tabla.innerHTML = `<tr><td colspan="9" class="text-center text-muted">No existen documentos generados.</td></tr>`;
+        return;
+    }
+
+    tabla.innerHTML = docs.map(function(d) {
+        return `
+        <tr>
+            <td>${d.nombre}</td>
+            <td>${d.rut}</td>
+            <td>${d.cargo}</td>
+            <td>${d.depto}</td>
+            <td>${badgeTipoDoc(d.tipoDoc)}</td>
+            <td>${d.tipoContrato}</td>
+            <td>$${Number(d.sueldo).toLocaleString("es-CL")}</td>
+            <td>${d.fechaEmision}</td>
+            <td>
+                <button class="btn btn-danger btn-sm" onclick="eliminarContrato(${d.id})">
+                    <i class="bi bi-trash-fill"></i>
+                </button>
+            </td>
+        </tr>`;
+    }).join("");
+}
+
+function eliminarContrato(id) {
+    if (!confirm("¿Está seguro de eliminar este documento?")) return;
+    const docs = obtenerContratos().filter(d => d.id !== id);
+    guardarContratos(docs);
+    renderTablaContratos(docs);
+}
+
+function mostrarTablaContratos() {
+    renderTablaContratos(obtenerContratos());
+}
+
+const botonGenerarDocumento = document.getElementById("generarDocumento");
 if (botonGenerarDocumento) {
     botonGenerarDocumento.addEventListener("click", function () {
-        const nombre     = document.querySelectorAll("input[type='text']")[0].value.trim();
-        const rut        = document.querySelectorAll("input[type='text']")[1].value.trim();
-        const cargo      = document.querySelectorAll("input[type='text']")[2].value.trim();
-        const depto      = document.querySelectorAll("input[type='text']")[3].value.trim();
-        const tipoDoc    = document.querySelectorAll("select")[0].value;
-        const sueldo     = document.querySelectorAll("input[type='text']")[4].value.trim();
-        const tipoContrato = document.querySelectorAll("select")[1].value;
+        const nombre       = document.getElementById("ctNombre").value.trim();
+        const rut          = document.getElementById("ctRut").value.trim();
+        const cargo        = document.getElementById("ctCargo").value.trim();
+        const depto        = document.getElementById("ctDepartamento").value.trim();
+        const tipoDoc      = document.getElementById("ctTipoDoc").value;
+        const fechaEmision = document.getElementById("ctFechaEmision").value;
+        const sueldo       = document.getElementById("ctSueldo").value.trim();
+        const tipoContrato = document.getElementById("ctTipoContrato").value;
 
-        if (!nombre || !rut || !cargo || !depto || !sueldo) {
+        if (!nombre || !rut || !cargo || !depto || !sueldo || !fechaEmision) {
             alert("Debe completar todos los campos obligatorios.");
             return;
         }
 
-        if (tipoDoc === "Seleccione una opción") {
+        if (!tipoDoc) {
             alert("Debe seleccionar un tipo de documento.");
             return;
         }
 
-        if (tipoContrato === "Seleccione tipo") {
+        if (!tipoContrato) {
             alert("Debe seleccionar un tipo de contrato.");
             return;
         }
 
-        const documento = {
+        if (isNaN(sueldo) || Number(sueldo) <= 0) {
+            alert("Debe ingresar un sueldo base válido.");
+            return;
+        }
+
+        const doc = {
             id: Date.now(),
-            nombre,
-            rut,
-            cargo,
-            depto,
-            tipoDoc,
-            sueldo,
-            tipoContrato,
-            fechaEmision: new Date().toLocaleDateString("es-CL")
+            nombre, rut, cargo, depto,
+            tipoDoc, tipoContrato,
+            sueldo: Number(sueldo),
+            fechaEmision: new Date(fechaEmision).toLocaleDateString("es-CL")
         };
 
-        const documentos = JSON.parse(localStorage.getItem("documentosGenerados")) || [];
-        documentos.push(documento);
-        localStorage.setItem("documentosGenerados", JSON.stringify(documentos));
+        const docs = obtenerContratos();
+        docs.push(doc);
+        guardarContratos(docs);
+        renderTablaContratos(docs);
+
+        // Limpiar formulario
+        document.getElementById("ctNombre").value       = "";
+        document.getElementById("ctRut").value          = "";
+        document.getElementById("ctCargo").value        = "";
+        document.getElementById("ctDepartamento").value = "";
+        document.getElementById("ctTipoDoc").value      = "";
+        document.getElementById("ctFechaEmision").value = "";
+        document.getElementById("ctSueldo").value       = "";
+        document.getElementById("ctTipoContrato").value = "";
 
         alert(
             `Documento generado exitosamente.\n\n` +
@@ -389,11 +457,23 @@ if (botonGenerarDocumento) {
             `Cargo: ${cargo}\n` +
             `Departamento: ${depto}\n` +
             `Tipo de Contrato: ${tipoContrato}\n` +
-            `Sueldo Base: $${sueldo}\n` +
-            `Fecha de Emisión: ${documento.fechaEmision}`
+            `Sueldo Base: $${Number(sueldo).toLocaleString("es-CL")}\n` +
+            `Fecha de Emisión: ${doc.fechaEmision}`
         );
     });
 }
+
+const botonLimpiarContratos = document.getElementById("limpiarContratos");
+if (botonLimpiarContratos) {
+    botonLimpiarContratos.addEventListener("click", function () {
+        if (!confirm("¿Está seguro de eliminar todos los documentos generados?")) return;
+        localStorage.removeItem("documentosGenerados");
+        mostrarTablaContratos();
+        alert("Todos los documentos han sido eliminados.");
+    });
+}
+
+mostrarTablaContratos();
 
 /*FICHA PERSONAL*/
 const botonGuardarFicha = document.getElementById("guardarFicha");
@@ -779,7 +859,7 @@ mostrarTablaAsistencia();
 const campoSalida = document.getElementById("asistSalida");
 if (campoSalida) campoSalida.value = "17:30";
 
-/*LIQUIDACIONES */
+/*LIQUIDACIONES*/
 
 function cargarDatosLiquidaciones() {
     const ficha    = JSON.parse(localStorage.getItem("fichaPersonal"));
@@ -940,7 +1020,7 @@ function generarPDFLiquidacion(mes, anio) {
     doc.text("SUELDO LIQUIDO A PAGAR", 16, y + 1);
     doc.text(fmt(sueldoLiquido), 194, y + 1, { align: "right" });
 
-    
+    // ---- Pie ----
     doc.setTextColor(150, 150, 150);
     doc.setFont("helvetica", "normal");
     doc.setFontSize(8);
@@ -977,25 +1057,7 @@ const botonVerLicencias = document.getElementById("verLicencias");
 
 if (botonVerReportes) {
     botonVerReportes.addEventListener("click", function () {
-        const fichaGuardada = JSON.parse(localStorage.getItem("fichaPersonal"));
-        const licencias     = JSON.parse(localStorage.getItem("licenciasMedicas")) || [];
-        const anticipos     = JSON.parse(localStorage.getItem("solicitudesAnticipos")) || [];
-        const vacaciones    = obtenerSolicitudes();
-
-        let resumen = "===== REPORTE DEL PERSONAL =====\n\n";
-
-        if (fichaGuardada) {
-            resumen += `Trabajador registrado: ${fichaGuardada.nombre} (${fichaGuardada.rut})\n`;
-            resumen += `Cargo: ${fichaGuardada.cargo}\n\n`;
-        } else {
-            resumen += "No hay ficha personal registrada.\n\n";
-        }
-
-        resumen += `Licencias médicas registradas: ${licencias.length}\n`;
-        resumen += `Solicitudes de anticipo: ${anticipos.length}\n`;
-        resumen += `Solicitudes de vacaciones: ${vacaciones.length}\n`;
-
-        alert(resumen);
+        window.location.href = "reportePersonal.html";
     });
 }
 
@@ -1028,3 +1090,232 @@ if (botonVerLicencias) {
         window.location.href = "licenciasMedicas.html";
     });
 }
+
+
+/*REPORTE DEL PERSONAL (reportePersonal.html)*/
+function cargarReportePersonal() {
+    if (!document.getElementById("tablaReporteAnticipos")) return;
+
+    // Ficha personal
+    const ficha = JSON.parse(localStorage.getItem("fichaPersonal"));
+    if (ficha) {
+        document.getElementById("datosFicha").classList.remove("d-none");
+        document.getElementById("rNombre").textContent   = ficha.nombre    || "-";
+        document.getElementById("rRut").textContent      = ficha.rut       || "-";
+        document.getElementById("rCargo").textContent    = ficha.cargo     || "-";
+        document.getElementById("rDireccion").textContent = ficha.direccion || "-";
+        document.getElementById("rTelefono").textContent = ficha.telefono  || "-";
+        document.getElementById("rCorreo").textContent   = ficha.correo    || "-";
+        document.getElementById("rAfp").textContent      = ficha.afp       || "-";
+        document.getElementById("rSalud").textContent    = ficha.salud     || "-";
+    } else {
+        document.getElementById("sinFicha").classList.remove("d-none");
+    }
+
+    // Anticipos
+    const anticipos = JSON.parse(localStorage.getItem("solicitudesAnticipos")) || [];
+    const tablaAnt  = document.getElementById("tablaReporteAnticipos");
+    if (anticipos.length === 0) {
+        tablaAnt.innerHTML = `<tr><td colspan="8" class="text-muted">Sin solicitudes de anticipo.</td></tr>`;
+    } else {
+        tablaAnt.innerHTML = anticipos.map(function(a) {
+            let badgeEstado = "";
+            if (a.estado === "Aprobado") {
+                badgeEstado = `<span class="badge bg-success">Aprobado</span>`;
+            } else if (a.estado === "Rechazado") {
+                badgeEstado = `<span class="badge bg-danger">Rechazado</span>`;
+            } else {
+                badgeEstado = `<span class="badge bg-warning text-dark">Pendiente</span>`;
+            }
+
+            const botonesAccion = a.estado === "Pendiente"
+                ? `<button class="btn btn-success btn-sm me-1" onclick="aprobarAnticipo(${a.id})">
+                       <i class="bi bi-check-circle-fill"></i> Aprobar
+                   </button>
+                   <button class="btn btn-danger btn-sm me-1" onclick="rechazarAnticipo(${a.id})">
+                       <i class="bi bi-x-circle-fill"></i> Rechazar
+                   </button>`
+                : "";
+
+            return `<tr>
+                <td>${a.fecha}</td>
+                <td>${a.nombre}</td>
+                <td>${a.rut}</td>
+                <td>$${Number(a.monto).toLocaleString("es-CL")}</td>
+                <td>${a.motivo || "-"}</td>
+                <td>${badgeEstado}</td>
+                <td>
+                    ${botonesAccion}
+                    <button class="btn btn-outline-danger btn-sm" onclick="eliminarAnticipo(${a.id})">
+                        <i class="bi bi-trash-fill"></i>
+                    </button>
+                </td>
+            </tr>`;
+        }).join("");
+    }
+
+    // Licencias
+    const licencias  = JSON.parse(localStorage.getItem("licenciasMedicas")) || [];
+    const tablaLic   = document.getElementById("tablaReporteLicencias");
+    if (licencias.length === 0) {
+        tablaLic.innerHTML = `<tr><td colspan="8" class="text-muted">Sin licencias registradas.</td></tr>`;
+    } else {
+        tablaLic.innerHTML = licencias.map(function(l) {
+            const estado = l.estado || "Pendiente";
+            let badgeLic = "";
+            if (estado === "Aprobada")      badgeLic = `<span class="badge bg-success">Aprobada</span>`;
+            else if (estado === "Rechazada") badgeLic = `<span class="badge bg-danger">Rechazada</span>`;
+            else                             badgeLic = `<span class="badge bg-warning text-dark">Pendiente</span>`;
+
+            const botonesLic = estado === "Pendiente"
+                ? `<button class="btn btn-success btn-sm me-1" onclick="aprobarLicenciaReporte(${l.id})">
+                       <i class="bi bi-check-circle-fill"></i> Aprobar
+                   </button>
+                   <button class="btn btn-danger btn-sm me-1" onclick="rechazarLicenciaReporte(${l.id})">
+                       <i class="bi bi-x-circle-fill"></i> Rechazar
+                   </button>`
+                : "";
+
+            return `<tr>
+                <td>${l.nombre}</td>
+                <td>${l.rut}</td>
+                <td>${l.tipoLicencia}</td>
+                <td>${l.centroMedico}</td>
+                <td>${l.medico}</td>
+                <td>${l.fechaInicio}</td>
+                <td>${l.fechaTermino}</td>
+                <td>${l.dias} días</td>
+                <td>${badgeLic}</td>
+                <td>
+                    ${botonesLic}
+                    <button class="btn btn-outline-danger btn-sm" onclick="eliminarLicenciaReporte(${l.id})">
+                        <i class="bi bi-trash-fill"></i>
+                    </button>
+                </td>
+            </tr>`;
+        }).join("");
+    }
+
+    // Vacaciones
+    const vacaciones = obtenerSolicitudes();
+    const tablaVac   = document.getElementById("tablaReporteVacaciones");
+    if (vacaciones.length === 0) {
+        tablaVac.innerHTML = `<tr><td colspan="7" class="text-muted">Sin solicitudes de vacaciones.</td></tr>`;
+    } else {
+        tablaVac.innerHTML = vacaciones.map(function(v) {
+            const botonesVac = v.estado === "Pendiente"
+                ? `<button class="btn btn-success btn-sm me-1" onclick="aprobarVacacionReporte(${v.id})">
+                       <i class="bi bi-check-circle-fill"></i> Aprobar
+                   </button>
+                   <button class="btn btn-danger btn-sm me-1" onclick="rechazarVacacionReporte(${v.id})">
+                       <i class="bi bi-x-circle-fill"></i> Rechazar
+                   </button>`
+                : "";
+
+            return `<tr>
+                <td>${v.nombre}</td>
+                <td>${v.rut}</td>
+                <td>${v.fechaInicio}</td>
+                <td>${v.fechaTermino}</td>
+                <td>${v.dias} días</td>
+                <td><span class="${claseEstado(v.estado)}">${v.estado}</span></td>
+                <td>
+                    ${botonesVac}
+                    <button class="btn btn-outline-danger btn-sm" onclick="eliminarVacacionReporte(${v.id})">
+                        <i class="bi bi-trash-fill"></i>
+                    </button>
+                </td>
+            </tr>`;
+        }).join("");
+    }
+}
+
+function actualizarEstadoAnticipo(id, nuevoEstado) {
+    const anticipos = (JSON.parse(localStorage.getItem("solicitudesAnticipos")) || []).map(function(a) {
+        if (a.id === id) a.estado = nuevoEstado;
+        return a;
+    });
+    localStorage.setItem("solicitudesAnticipos", JSON.stringify(anticipos));
+    cargarReportePersonal();
+}
+
+function aprobarAnticipo(id) {
+    if (!confirm("¿Está seguro de aprobar esta solicitud de anticipo?")) return;
+    actualizarEstadoAnticipo(id, "Aprobado");
+    alert("Solicitud de anticipo aprobada correctamente.");
+}
+
+function rechazarAnticipo(id) {
+    if (!confirm("¿Está seguro de rechazar esta solicitud de anticipo?")) return;
+    actualizarEstadoAnticipo(id, "Rechazado");
+    alert("Solicitud de anticipo rechazada.");
+}
+
+function actualizarEstadoLicencia(id, nuevoEstado) {
+    const licencias = (JSON.parse(localStorage.getItem("licenciasMedicas")) || []).map(function(l) {
+        if (l.id === id) l.estado = nuevoEstado;
+        return l;
+    });
+    localStorage.setItem("licenciasMedicas", JSON.stringify(licencias));
+    cargarReportePersonal();
+}
+
+function aprobarLicenciaReporte(id) {
+    if (!confirm("¿Está seguro de aprobar esta licencia médica?")) return;
+    actualizarEstadoLicencia(id, "Aprobada");
+    alert("Licencia médica aprobada correctamente.");
+}
+
+function rechazarLicenciaReporte(id) {
+    if (!confirm("¿Está seguro de rechazar esta licencia médica?")) return;
+    actualizarEstadoLicencia(id, "Rechazada");
+    alert("Licencia médica rechazada.");
+}
+
+function eliminarLicenciaReporte(id) {
+    if (!confirm("¿Está seguro de eliminar esta licencia médica?")) return;
+    const licencias = (JSON.parse(localStorage.getItem("licenciasMedicas")) || []).filter(l => l.id !== id);
+    localStorage.setItem("licenciasMedicas", JSON.stringify(licencias));
+    cargarReportePersonal();
+}
+
+function eliminarVacacionReporte(id) {
+    if (!confirm("¿Está seguro de eliminar esta solicitud de vacaciones?")) return;
+    const solicitudes = obtenerSolicitudes().filter(v => v.id !== id);
+    guardarSolicitudes(solicitudes);
+    cargarReportePersonal();
+}
+
+function aprobarVacacionReporte(id) {
+    if (!confirm("¿Está seguro de aprobar esta solicitud de vacaciones?")) return;
+    let solicitudes = obtenerSolicitudes().map(function(v) {
+        if (v.id === id) v.estado = "Aprobada";
+        return v;
+    });
+    guardarSolicitudes(solicitudes);
+    cargarReportePersonal();
+    alert("Solicitud de vacaciones aprobada correctamente.");
+}
+
+function rechazarVacacionReporte(id) {
+    if (!confirm("¿Está seguro de rechazar esta solicitud de vacaciones?")) return;
+    let solicitudes = obtenerSolicitudes().map(function(v) {
+        if (v.id === id) {
+            v.estado = "Rechazada";
+            v.fechaRechazo = new Date().toISOString();
+        }
+        return v;
+    });
+    guardarSolicitudes(solicitudes);
+    cargarReportePersonal();
+    alert("Solicitud de vacaciones rechazada.");
+}
+
+function eliminarAnticipo(id) {
+    if (!confirm("¿Está seguro de eliminar esta solicitud de anticipo?")) return;
+    const anticipos = (JSON.parse(localStorage.getItem("solicitudesAnticipos")) || []).filter(a => a.id !== id);
+    localStorage.setItem("solicitudesAnticipos", JSON.stringify(anticipos));
+    cargarReportePersonal();
+}
+
+cargarReportePersonal();

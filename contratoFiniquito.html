@@ -14,21 +14,16 @@
 <body>
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
-
         <div class="container">
-
             <a class="navbar-brand" href="principal.html">
                 <i class="bi bi-shield-lock-fill text-success"></i>
                 Seguridad LTDA
             </a>
-
             <a href="portalEmpleado.html" class="btn btn-outline-light btn-sm">
                 <i class="bi bi-arrow-left-circle-fill"></i>
                 Volver al Portal
             </a>
-
         </div>
-
     </nav>
 
     <main class="container mt-5 mb-5">
@@ -36,15 +31,8 @@
         <section class="shadow p-5 bg-white rounded">
 
             <div class="text-center mb-5">
-
-                <h1 class="display-5">
-                    Contratos y Finiquitos
-                </h1>
-
-                <p class="lead text-muted">
-                    Gestión y generación de contratos laborales y documentos de finiquito del personal.
-                </p>
-
+                <h1 class="display-5">Contratos y Finiquitos</h1>
+                <p class="lead text-muted">Gestión y generación de contratos laborales y documentos de finiquito del personal.</p>
             </div>
 
             <form>
@@ -52,136 +40,114 @@
                 <div class="row g-4">
 
                     <div class="col-md-6">
-                        <label class="form-label fw-bold">
-                            Nombre del Trabajador
-                        </label>
-
-                        <input type="text" class="form-control" placeholder="Ingrese nombre completo">
+                        <label class="form-label fw-bold">Nombre del Trabajador</label>
+                        <input type="text" class="form-control" id="ctNombre" placeholder="Ingrese nombre completo">
                     </div>
 
                     <div class="col-md-6">
-                        <label class="form-label fw-bold">
-                            RUT
-                        </label>
-
-                        <input type="text" class="form-control" placeholder="Ej: 12.345.678-9">
+                        <label class="form-label fw-bold">RUT</label>
+                        <input type="text" class="form-control" id="ctRut" placeholder="Ej: 12.345.678-9">
                     </div>
 
                     <div class="col-md-6">
-                        <label class="form-label fw-bold">
-                            Cargo
-                        </label>
-
-                        <input type="text" class="form-control" placeholder="Ingrese cargo">
+                        <label class="form-label fw-bold">Cargo</label>
+                        <input type="text" class="form-control" id="ctCargo" placeholder="Ingrese cargo">
                     </div>
 
                     <div class="col-md-6">
-                        <label class="form-label fw-bold">
-                            Departamento
-                        </label>
-
-                        <input type="text" class="form-control" placeholder="Ingrese departamento">
+                        <label class="form-label fw-bold">Departamento</label>
+                        <input type="text" class="form-control" id="ctDepartamento" placeholder="Ingrese departamento">
                     </div>
 
                     <div class="col-md-6">
-                        <label class="form-label fw-bold">
-                            Tipo de Documento
-                        </label>
-
-                        <select class="form-select">
-
-                            <option selected>
-                                Seleccione una opción
-                            </option>
-
+                        <label class="form-label fw-bold">Tipo de Documento</label>
+                        <select class="form-select" id="ctTipoDoc">
+                            <option value="">Seleccione una opción</option>
                             <option>Contrato</option>
                             <option>Finiquito</option>
                             <option>Anexo de Contrato</option>
-
                         </select>
                     </div>
 
                     <div class="col-md-6">
-
-                        <label class="form-label fw-bold">
-                            Fecha de Emisión
-                        </label>
-
-                        <input type="text" class="form-control" placeholder="Ej: 13 - Abril - 2026"
-                            onfocus="(this.type='date')" onblur="if(!this.value)this.type='text'">
+                        <label class="form-label fw-bold">Fecha de Emisión</label>
+                        <input type="date" class="form-control" id="ctFechaEmision">
                     </div>
 
                     <div class="col-md-6">
-
-                        <label class="form-label fw-bold">
-                            Sueldo Base
-                        </label>
-
+                        <label class="form-label fw-bold">Sueldo Base</label>
                         <div class="input-group">
-
-                            <span class="input-group-text">
-                                $
-                            </span>
-
-                            <input type="text" class="form-control" placeholder="Ingrese sueldo">
+                            <span class="input-group-text">$</span>
+                            <input type="number" class="form-control" id="ctSueldo" placeholder="Ingrese sueldo">
                         </div>
-
                     </div>
 
                     <div class="col-md-6">
-
-                        <label class="form-label fw-bold">
-                            Tipo de Contrato
-                        </label>
-
-                        <select class="form-select">
-
-                            <option selected>
-                                Seleccione tipo
-                            </option>
-
+                        <label class="form-label fw-bold">Tipo de Contrato</label>
+                        <select class="form-select" id="ctTipoContrato">
+                            <option value="">Seleccione tipo</option>
                             <option>Indefinido</option>
                             <option>Plazo Fijo</option>
                             <option>Part Time</option>
                             <option>Full Time</option>
-
                         </select>
-                    </div>
-
-                    <div class="col-12">
-
-                        <label class="form-label fw-bold">
-                            Observaciones
-                        </label>
-
-                        <textarea class="form-control" rows="4" placeholder="Ingrese observaciones"></textarea>
                     </div>
 
                 </div>
 
                 <div class="text-center mt-5">
-
                     <button type="button" class="btn btn-success px-4 me-2" id="generarDocumento">
-
                         <i class="bi bi-file-earmark-text-fill"></i>
                         Generar Documento
-
                     </button>
-
-                    <a href="portalEmpleado.html" class="btn btn-secondary px-4">
-
-                        <i class="bi bi-arrow-left-circle-fill"></i>
-                        Volver
-                    </a>
-
+                    <button type="button" class="btn btn-outline-danger px-4" id="limpiarContratos">
+                        <i class="bi bi-trash-fill"></i>
+                        Limpiar Todo
+                    </button>
                 </div>
 
             </form>
+
+            <!-- HISTORIAL -->
+            <div class="mt-5">
+
+                <h3 class="mb-3">Historial de Documentos</h3>
+
+                <div class="table-responsive shadow-sm rounded">
+                    <table class="table table-bordered table-hover text-center align-middle">
+                        <thead class="table-dark">
+                            <tr>
+                                <th>Nombre</th>
+                                <th>RUT</th>
+                                <th>Cargo</th>
+                                <th>Departamento</th>
+                                <th>Tipo Documento</th>
+                                <th>Tipo Contrato</th>
+                                <th>Sueldo Base</th>
+                                <th>Fecha Emisión</th>
+                                <th>Acción</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tablaContratos">
+                            <tr>
+                                <td colspan="9" class="text-center text-muted">No existen documentos generados.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+
+            <div class="text-center mt-5">
+                <a href="portalEmpleado.html" class="btn btn-secondary px-4">
+                    <i class="bi bi-arrow-left-circle-fill"></i>
+                    Volver
+                </a>
+            </div>
 
         </section>
 
     </main>
 
 </body>
-
 </html>
