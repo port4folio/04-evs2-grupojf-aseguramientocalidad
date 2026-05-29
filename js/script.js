@@ -70,14 +70,40 @@ function claseEstado(estado) {
     return "badge bg-warning text-dark";
 }
 
+function actualizarResumenDiasVacaciones() {
+    const diasDisponiblesElemento = document.getElementById("diasDisponibles");
+    const diasTomadosElemento = document.getElementById("diasTomados");
+    const diasPendientesElemento = document.getElementById("diasPendientes");
+
+    if (!diasDisponiblesElemento || !diasTomadosElemento || !diasPendientesElemento) {
+        return;
+    }
+
+    const totalDiasDisponibles = 15;
+    const solicitudes = obtenerSolicitudes();
+
+    const diasTomados = solicitudes
+        .filter(solicitud => solicitud.estado === "Aprobada")
+        .reduce((total, solicitud) => total + Number(solicitud.dias), 0);
+
+    const diasPendientes = totalDiasDisponibles - diasTomados;
+
+    diasDisponiblesElemento.textContent = totalDiasDisponibles;
+    diasTomadosElemento.textContent = diasTomados;
+    diasPendientesElemento.textContent = diasPendientes >= 0 ? diasPendientes : 0;
+}
+
 function mostrarTablaVacaciones() {
+
     if (!tablaVacaciones) return;
 
     eliminarSolicitudesVencidas();
+    actualizarResumenDiasVacaciones();
 
     const solicitudes = obtenerSolicitudes();
 
     if (solicitudes.length === 0) {
+
         tablaVacaciones.innerHTML = `
             <tr>
                 <td colspan="7" class="text-center text-muted">
@@ -85,17 +111,19 @@ function mostrarTablaVacaciones() {
                 </td>
             </tr>
         `;
+
+        actualizarResumenDiasVacaciones();
+
         return;
     }
 
     tablaVacaciones.innerHTML = "";
 
-    solicitudes.forEach(function (solicitud) {
-        const inicio = convertirFecha(solicitud.fechaInicio);
+    solicitudes.forEach(solicitud => {
 
-        tablaVacaciones.innerHTML += `
+        const fila = `
             <tr>
-                <td>${inicio.getFullYear()}</td>
+                <td>${new Date(solicitud.fechaInicio).getFullYear()}</td>
                 <td>${solicitud.nombre}</td>
                 <td>${solicitud.rut}</td>
                 <td>${solicitud.fechaInicio}</td>
@@ -108,7 +136,13 @@ function mostrarTablaVacaciones() {
                 </td>
             </tr>
         `;
+
+        tablaVacaciones.innerHTML += fila;
+
     });
+
+    actualizarResumenDiasVacaciones();
+
 }
 
 if (fechaInicio && fechaTermino) {
@@ -265,6 +299,7 @@ if (botonCalcular) {
         const colacion     = parseFloat(inputs[4].value) || 0;
         const movilizacion = parseFloat(inputs[5].value) || 0;
 
+        const cargo    = document.querySelector("input[placeholder='Ingrese cargo']").value.trim();
         const afp    = document.querySelectorAll("select")[0].value;
         const salud  = document.querySelectorAll("select")[1].value;
 
@@ -390,6 +425,44 @@ function eliminarContrato(id) {
     renderTablaContratos(docs);
 }
 
+function calcularAntiguedad(fechaIngreso) {
+    const ingreso = new Date(fechaIngreso);
+    const hoy = new Date();
+
+    let anios = hoy.getFullYear() - ingreso.getFullYear();
+    let meses = hoy.getMonth() - ingreso.getMonth();
+
+    if (meses < 0) {
+        anios--;
+        meses += 12;
+    }
+
+    return `${anios} año(s) y ${meses} mes(es)`;
+}
+
+const botonCertificadoAntiguedad = document.getElementById("generarCertificadoAntiguedad");
+
+if (botonCertificadoAntiguedad) {
+    botonCertificadoAntiguedad.addEventListener("click", function () {
+        const ficha = JSON.parse(localStorage.getItem("fichaPersonal"));
+
+        if (!ficha || !ficha.fechaIngreso) {
+            alert("Debe completar primero la Ficha Personal con la fecha de ingreso.");
+            return;
+        }
+
+        const antiguedad = calcularAntiguedad(ficha.fechaIngreso);
+
+        alert(
+            `CERTIFICADO DE ANTIGÜEDAD\n\n` +
+            `Se certifica que el trabajador ${ficha.nombre}, RUT ${ficha.rut}, ` +
+            `se desempeña en el cargo de ${ficha.cargo} en Seguridad LTDA.\n\n` +
+            `Fecha de ingreso: ${ficha.fechaIngreso}\n` +
+            `Antigüedad laboral: ${antiguedad}.`
+        );
+    });
+}
+
 function mostrarTablaContratos() {
     renderTablaContratos(obtenerContratos());
 }
@@ -486,10 +559,11 @@ if (botonGuardarFicha) {
         const telefono = document.querySelector("input[type='tel']").value.trim();
         const correo   = document.querySelector("input[type='email']").value.trim();
         const cargo    = document.querySelector("input[placeholder='Ingrese cargo']").value.trim();
+        const fechaIngreso = document.getElementById("fechaIngreso").value;
         const afp      = document.querySelectorAll("select")[0].value;
         const salud    = document.querySelectorAll("select")[1].value;
 
-        if (!nombre || !rut || !direccion || !telefono || !correo || !cargo) {
+        if (!nombre || !rut || !direccion || !telefono || !correo || !cargo || !fechaIngreso) {
             alert("Debe completar todos los campos obligatorios.");
             return;
         }
@@ -518,6 +592,7 @@ if (botonGuardarFicha) {
             telefono,
             correo,
             cargo,
+            fechaIngreso,
             afp,
             salud
         };
@@ -789,17 +864,24 @@ if (botonRegistrarAsistencia) {
 }
 
 const botonLimpiarAsistencia = document.getElementById("limpiarAsistencia");
+
 if (botonLimpiarAsistencia) {
     botonLimpiarAsistencia.addEventListener("click", function () {
         if (!confirm("¿Está seguro de eliminar TODOS los registros de asistencia?")) return;
+
         localStorage.removeItem("registrosAsistencia");
         mostrarTablaAsistencia();
 
-// Forzar valor 17:30 en campo salida al cargar la página
-const campoSalida = document.getElementById("asistSalida");
-if (campoSalida) campoSalida.value = "17:30";
+
         alert("Todos los registros han sido eliminados.");
     });
+}
+
+// Forzar valor 17:30 en campo salida al cargar la página
+const campoSalida = document.getElementById("asistSalida");
+
+if (campoSalida) {
+    campoSalida.value = "17:30";
 }
 
 const botonAplicarFiltro = document.getElementById("aplicarFiltro");
@@ -833,11 +915,9 @@ if (botonLimpiarFiltro) {
         document.getElementById("filtroNombre").value       = "";
         document.getElementById("filtroFechaInicio").value  = "";
         document.getElementById("filtroFechaTermino").value = "";
+        
         mostrarTablaAsistencia();
 
-// Forzar valor 17:30 en campo salida al cargar la página
-const campoSalida = document.getElementById("asistSalida");
-if (campoSalida) campoSalida.value = "17:30";
     });
 }
 
@@ -854,10 +934,6 @@ if (botonImprimirAsistencia) {
 }
 
 mostrarTablaAsistencia();
-
-// Forzar valor 17:30 en campo salida al cargar la página
-const campoSalida = document.getElementById("asistSalida");
-if (campoSalida) campoSalida.value = "17:30";
 
 /*LIQUIDACIONES*/
 
